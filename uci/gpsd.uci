@@ -1,0 +1,6 @@
+gpsd.core=gpsd
+gpsd.core.port='2947'
+gpsd.core.listen_globally='0'
+gpsd.core.enabled='1'
+gpsd.core.device='/dev/mhi_LOOPBACK'
+gpsd.core.parameters='-p -P /var/run/gpsd.pid'

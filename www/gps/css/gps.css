@@ -1,0 +1,75 @@
+body {
+#	background-color: blue;
+}
+
+button {
+	width: 100px;
+}
+
+#overlay {
+	visibility: hidden;
+	width: 300px;
+	height: 200px;
+	top: 100px;
+	left: 100px;
+	background-color: rgba(240, 240, 240, 75%);
+	border: 3px solid rgba(0, 0, 0, 30%);
+	border-radius: 5;
+	position: fixed;
+	z-index: 100;
+}
+
+.fL {
+	list-style-position: inside;
+	float: left;
+	min-width: 265px;
+	padding: 2px 2px 2px 2px;
+	margin-top: 0px;
+	margin-right: 5px;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+}
+
+.fL li {
+	list-style-type: none;
+	cursor: default;
+	margin: 3px 0px 3px 0px;
+}
+
+.fL li p {
+	margin: 5px 0px 0px 10px;
+	padding-bottom: 5px;
+}
+
+.fL .fLD {
+	list-style-type: disclosure-closed;
+	display: none;
+	padding-left: 1em;
+}
+.fL .fLDL {
+	list-style-type: disclosure-closed;
+	cursor: pointer;
+}
+.fL #fLS {
+	background-color: rgba(0, 0, 0, 0.15);
+}
+.fL #ad {
+	float: right;
+	border: 1px solid rgba(0, 0, 0, 0.75);
+	border-radius: 4px;
+	background-color: #EEEEEE;
+	min-width: 18px;
+	margin-left: 20px;
+	margin-top: -1px;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+}
+#dFL {
+	border: 1px solid rgba(0, 0, 0, 0.75);
+	border-radius: 5px;
+	float: left;
+	width: 400px;
+	height: 200px;
+	padding: 2px 2px 2px 2px;
+}
