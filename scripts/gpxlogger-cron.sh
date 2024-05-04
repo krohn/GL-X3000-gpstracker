@@ -72,8 +72,6 @@ if [ ! -z "$gpsdPid" -a -z "$gpxLoggerPid" ]; then
 		$chgCmd www-data $gpxLogDir$mvName
 	fi
 	startGpxLogger
-else
-	writeLog "gpsd/gpxlogger already running (gpxlogg-pid: $gpxLoggerPid, gpsd-pid: $gpsdPid)"
 fi
 
 logName="/var/log/${scriptName/\.*/.log}"

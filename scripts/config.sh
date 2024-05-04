@@ -16,7 +16,7 @@ check () {
 	printf "%-6s %s\n" "$cmp" "${extra}exists ${link}"
 }
 
-echo -e "\nchecking all files in $confDir\n"
+echo -e "\nChecking all files in $confDir\n"
 
 printf "%-50s %-6s %-20s\n" "name" "cmp" "status"
 printf "%s %s %s\n" "--------------------------------------------------" "------" "--------------------"
@@ -27,13 +27,13 @@ done
 printf "\n"
 
 # checking packages
-echo -n "checking required packages: "
+echo -n "Checking required packages: "
 
 packReqCore="bash coreutils-base64 diffutils socat lsblk"
 packReqNet="nmap"
 packReqGps="gpsd gpsd-clients gpsd-utils"
 packReqPhp="php8 php8-cli php8-mod-curl php8-fpm php8-mod-simplexml"
-packReqTz="zoneinfo-core zoneinfo-europe zoneinfo-southamerica"
+packReqTz="zoneinfo-core zoneinfo-europe"
 packReq="$packReqCore $packReqNet $packReqGps $packReqPhp $packReqTz"
 packsReq=`echo -e "${packReq// /\\\n}" | wc -l`
 
