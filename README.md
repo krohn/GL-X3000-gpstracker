@@ -1,37 +1,23 @@
-# GL-X3000-GPS-Tracker
+# GL-X3000-gpstracker
 
 This is a fork of https://github.com/habeIchVergessen/GL-X3000.
-Mainly it's his work, I only tweaked it for my personell needs:
 
-Aufgrund von Berechitugnsproblemen im meinem Setup werden die Files in /opt/gpstracker statt auf der SD-Karte installiert.
+Mainly it's his work, I only tweaked it for my personell needs.
+Due to authorization problems in my setup, the files are installed in /opt/gpstracker instead of on the SD card.
 
 ## What does it do?
 
-* monitor gpsd, gpxlogger
-* serve gpx-track's on website
-* report GPS-position via sms (poll incoming messages and reply to accepted masters)
-* upload gpx-track's to remote website
+* Monitor gpsd, gpxlogger
+* Serve gpx-tracks on website
+* Report GPS position via SMS (poll incoming messages and reply to accepted masters)
+* Upload gpx-tracks to remote website
 
 ## TODO:
+
 [ ] Documentation about gpsd config
 
-
-
-## Configuration - First use
-
-* clone the repo
-
-### extract to sd card
-* cd
-* ln -s /opt/gpstracker/scripts scripts
-### check config
-* ./scripts/config.sh
-#### install missing packages
-* opkg install [list of packages from output]
-#### copy/link all files listed above
-* ln -s /opt/gpstracker/config/etc/nginx/gl-conf.d/service-gps.conf /etc/nginx/gl-conf.d/service-gps.conf
-* rerun config.sh and check column cmp shows ok for each file 
-
+## Install
+See INSTALL.md
 
 #### check uci settings (/opt/gpstracker/uci)
 * uci show gpsd
@@ -41,8 +27,9 @@ Aufgrund von Berechitugnsproblemen im meinem Setup werden die Files in /opt/gpst
 
 #### reload web server config
 * nginx -s reload
+
 ## first run
-* ./scripts/gpxlogger-cron.sh
+* /opt/gpstracker/scripts/gpxlogger-cron.sh
 * logread -e gpx && date
 * output like this should shown: 05.07.2023 11:29.00 CEST: starting gpxlogger
 

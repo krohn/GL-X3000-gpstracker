@@ -2,17 +2,20 @@
 
 ## Copy files to /opt/gpstracker
 ```
-mkdir -p /opt
-mkdir -p /opt/gpstracker
 mkdir -p /opt/gpstracker/gps
-cp -R ./www /opt/gpstracker/www
-cp -R ./config /opt/gpstracker/config
-cp -R ./scripts /opt/gpstracker/scripts
+cp -R ./www /opt/gpstracker/
+cp -R ./config /opt/gpstracker/
+cp -R ./scripts /opt/gpstracker/
 ln -s /opt/gpstracker/scripts ~/
 ```
 
 ## Link the config files
 ```
+rm /etc/php.ini
+rm /etc/php8-fpm.d/gps.conf
+rm /etc/init.d/gpsd
+rm /etc/php8-fpm.conf
+rm /etc/nginx/gl-conf.d/service-gps.conf
 ln -s /opt/gpstracker/config/etc/php.ini /etc/php.ini
 ln -s /opt/gpstracker/config/etc/php8-fpm.d/gps.conf /etc/php8-fpm.d/gps.conf
 ln -s /opt/gpstracker/config/etc/init.d/gpsd /etc/init.d/gpsd
@@ -33,6 +36,10 @@ Note:
 * Restart gpsd with `/etc/init.d/gpsd restart` 
 
 ## Restart NGINX
-* nginx -s reload
+* Reload with `nginx -s reload`
+* Check logs `cat /var/log/nginx/error.log``
 
 # First run
+
+* Run `/opt/gpstracker/scripts/gpxlogger-cron.sh` to start the logging
+* Check `logread -e gpx && date` for "starting gpxlogger" (output like this should shown: "05.07.2023 11:29.00 CEST: starting gpxlogger"

@@ -1,9 +1,8 @@
 #! /usr/bin/php-cli
-
 <?php
 
-require __DIR__ . "/../.www/gps/GpxClasses.php";
-require __DIR__ . "/../.www/gps/LocalConfig.php";
+require __DIR__ . "/../www/gps/GpxClasses.php";
+require __DIR__ . "/../www/gps/LocalConfig.php";
 
 function formatBoundsJson($bounds) {
 	return $bounds['min']['lat'] . ', ' . $bounds['min']['lon'] . ' - ' . 
@@ -28,7 +27,7 @@ function parseJson($name) {
 	global $localURL;
 	global $localStreamContext;
 	
-	echo "parseJson: " . $name . "\n\n";
+	echo "parseJson: " . $name . "\n";
 
 	$http_response_header;		// prevent runtime error
 	$startTime = microtime(true);
@@ -67,8 +66,12 @@ function parseJson($name) {
 	}
 
 	echo sprintf("http:   %3.3f s\n",  $parseTime);
-	echo sprintf("xml:    %3.3f s\n",  $json['parse']['xml']);
-	echo sprintf("gpx:    %3.3f s\n",  $json['parse']['gpx']);
+	if ($json != null) {
+		echo sprintf("xml:    %3.3f s\n",  $json['parse']['xml']);
+		echo sprintf("gpx:    %3.3f s\n",  $json['parse']['gpx']);
+	} else {
+		echo "error:    no json data";
+	}
 	echo sprintf("memory: %d\n",  memory_get_usage());
 
 	echo "\n";
@@ -150,7 +153,7 @@ if ($argc < 2) {
 	exit;
 }
 
-echo "url: " . $localURL . "\n\n";
+echo "url: " . $localURL . "\n";
 
 $action='-json';
 for($idx=1; $idx<$argc; $idx++) {
