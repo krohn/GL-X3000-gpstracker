@@ -3,9 +3,9 @@
 ## Copy files to /opt/gpstracker
 ```
 mkdir -p /opt/gpstracker/gps
-cp -R ./www /opt/gpstracker/
-cp -R ./config /opt/gpstracker/
-cp -R ./scripts /opt/gpstracker/
+cp -R ~/www /opt/gpstracker/
+cp -R ~/config /opt/gpstracker/
+cp -R ~/scripts /opt/gpstracker/
 ln -s /opt/gpstracker/scripts ~/
 ```
 
@@ -25,7 +25,7 @@ ln -s /opt/gpstracker/config/etc/nginx/gl-conf.d/service-gps.conf /etc/nginx/gl-
 
 ## Check base install
 ``` 
-./scripts/config.sh
+~/scripts/config.sh
 ``` 
 Note: 
 * All files must be marked `ok` in Column "cmp" and with `exists` or `exists (link)` in "status"
@@ -37,9 +37,17 @@ Note:
 
 ## Restart NGINX
 * Reload with `nginx -s reload`
-* Check logs `cat /var/log/nginx/error.log``
+* Check logs `tail /var/log/nginx/error.log`
 
 # First run
 
 * Run `/opt/gpstracker/scripts/gpxlogger-cron.sh` to start the logging
 * Check `logread -e gpx && date` for "starting gpxlogger" (output like this should shown: "05.07.2023 11:29.00 CEST: starting gpxlogger"
+* Check http://[ROUTER-IP]/gps/
+
+
+## Configure cron
+* `echo "*/1 * * * * /opt/gpstracker/scripts/gpxlogger-cron.sh >> /var/log/gpxlogger-cron.log 2>&1" >> /etc/crontab`
+* Restart crontab with `/etc/init.d/cron restart` 
+* Check log `tail /var/log/gpxlogger-cron.log`
+

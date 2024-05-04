@@ -572,5 +572,3 @@ function testLocalFilesRenamed(&$renamedFiles=array(), $path='', $jsonDirty=null
 	saveRemoteListing();
 
 	echo "\n";
-
-?>

@@ -1,5 +1,4 @@
 #! /bin/bash
-
 set -e
 
 gpxLogDir=/opt/gpstracker/gps/
@@ -12,12 +11,16 @@ forceGpxTrackUpload() {
 		[ -x `dirname $0`/gpx-upload.php ] && \
 		`dirname $0`/gpx-upload.php && \
 		echo -n "ok"
+	else 
+		echo -n "error in forceGpxTrackUpload()"
 	fi
 }
 mailGpxTrack() {
 	if [ -n "$1" ]; then
 		`dirname $0`/email.sh "$1" && \
 		echo -n "ok"
+	else 
+		echo -n "error in mailGpxTrack()"
 	fi
 }
 
@@ -44,7 +47,7 @@ getPidof() {
 }
 
 startGpxLogger () {
-	writeLog "starting `basename $gpxCmd`"
+	writeLog "Starting `basename $gpxCmd`"
 	
 	$gpxCmd $gpxOpts -f $gpxLogDir$gpxLogFile localhost
 	gpxLoggerPid=$(getPidof $gpxCmd)
@@ -55,7 +58,7 @@ gpxLoggerPid=$(getPidof $gpxCmd)
 
 if [ -n "$gpsdPid" -a -n "$gpxLoggerPid" ]; then
 	if [[ /var/run/gpsd.pid -nt $gpxLogDir$gpxLogFile ]]; then
-		writeLog "gpsd has been restarted while gpxlogger runs. forcing restart"
+		writeLog "gpsd has been restarted while gpxlogger runs. Forcing restart"
 		kill $gpxLoggerPid && gpxLoggerPid=""
 	fi
 fi
@@ -63,13 +66,14 @@ fi
 if [ ! -z "$gpsdPid" -a -z "$gpxLoggerPid" ]; then
 	if [ -f $gpxLogDir$gpxLogFile ]; then
 		mvName="${gpxLogFile/\.*/}_`date +"%Y-%m-%d_%H-%M-%S" -r $gpxLogDir$gpxLogFile`.${gpxLogFile##*.}"
-		writeLog "rename $gpxLogFile to $mvName"
+		writeLog "Renaming $gpxLogFile to $mvName"
 		mv $gpxLogDir$gpxLogFile $gpxLogDir$mvName
 		$chmCmd 440 $gpxLogDir$mvName
 		$chgCmd www-data $gpxLogDir$mvName
 	fi
-	
 	startGpxLogger
+else
+	writeLog "gpsd/gpxlogger already running (gpxlogg-pid: $gpxLoggerPid, gpsd-pid: $gpsdPid)"
 fi
 
 logName="/var/log/${scriptName/\.*/.log}"
@@ -81,5 +85,4 @@ if [ -f $logName ]; then
 		echo -e "$log" > $logName || \
 		writeLog "shrinking $logName failed"
 	fi
-		
 fi

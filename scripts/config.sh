@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/bash
 
 confDir=/opt/gpstracker/config
 

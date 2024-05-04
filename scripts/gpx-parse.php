@@ -65,12 +65,12 @@ function parseJson($name) {
 		}
 	}
 
-	echo sprintf("http:   %3.3f s\n",  $parseTime);
+	echo sprintf("http:     %3.3f s\n",  $parseTime);
 	if ($json != null) {
 		echo sprintf("xml:    %3.3f s\n",  $json['parse']['xml']);
 		echo sprintf("gpx:    %3.3f s\n",  $json['parse']['gpx']);
 	} else {
-		echo "error:    no json data";
+		echo "error:     No json data\n";
 	}
 	echo sprintf("memory: %d\n",  memory_get_usage());
 
@@ -177,5 +177,3 @@ for($idx=1; $idx<$argc; $idx++) {
 			break;
 	}
 }
-
-?>

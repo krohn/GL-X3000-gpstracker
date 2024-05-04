@@ -129,7 +129,7 @@ function serveHtml() {
 	
 	exec('find ./' . $gpxDir . ' -name "[^.]*.gpx"', $output, $ret);
 	sort($output);
-	$lastDirE;
+    $lastDirE;
 	echo '<ul class="fL">';
 	foreach ($output as $gpx) {
 		$dir=str_replace('.', '', dirname(substr($gpx, strlen('./' . $gpxDir) + 1)));
@@ -162,7 +162,6 @@ function serveHtml() {
 		echo '<li>' . basename($gpx) . "</li>";
 		$lastDirE=$dirE;
 	}
-//	echo '<br><button id="bTest">Test</button>';
 	echo '</ul><br>';
 
 	echo "</body></html>\n";
@@ -174,5 +173,3 @@ if (! array_key_exists('f', $_GET))
 	serveHtml();
 
 serveFile(urldecode($_GET['f']));
-
-?>

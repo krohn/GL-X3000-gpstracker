@@ -42,5 +42,3 @@ $remoteStreamContext=stream_context_create($remoteStreamContextOptions);
 $remoteURL=sprintf('http%s://%s', (isset($remoteStreamContextOptions['ssl']) ? 's' : ''), $remoteURL);
 
 unset($remoteStreamContextOptions);
-
-?>

@@ -1,5 +1,4 @@
-#! /bin/bash
-
+#!/bin/bash
 set -e
 
 shell=$(ps w | grep -E "^\s{0,}$$" | basename `awk ' { print (substr($5, 1, 1) == "{" ? $6 : $5) } '`)

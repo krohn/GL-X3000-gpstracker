@@ -2,7 +2,7 @@
 
 This is a fork of https://github.com/habeIchVergessen/GL-X3000.
 
-Mainly it's his work, I only tweaked it for my personell needs.
+Credits to https://github.com/habeIchVergessen. Mainly it's his work, I only tweaked it for my personell needs.
 Due to authorization problems in my setup, the files are installed in /opt/gpstracker instead of on the SD card.
 
 ## What does it do?
@@ -17,24 +17,19 @@ Due to authorization problems in my setup, the files are installed in /opt/gpstr
 [ ] Documentation about gpsd config
 
 ## Install
+Requires GPSD enabled, see https://forum.gl-inet.com/t/howto-gl-x3000-gps-configuration-guide/30260
 See INSTALL.md
 
 #### check uci settings (/opt/gpstracker/uci)
 * uci show gpsd
 * compare output off command with file gpsd.uci (gpsd.core.parameters needs to be added)
 * restart gpsd
-
-
 #### reload web server config
 * nginx -s reload
 
-## first run
-* /opt/gpstracker/scripts/gpxlogger-cron.sh
-* logread -e gpx && date
-* output like this should shown: 05.07.2023 11:29.00 CEST: starting gpxlogger
 
 ### additional tests
-* ./scripts/gpx-parse.php gpxlog.gpx
+* ~/scripts/gpx-parse.php gpxlog.gpx
 * web-gui (http://[your router name here]/gps/) should show gpxlog.gpx
 
 ## configure cron
@@ -64,7 +59,7 @@ See INSTALL.md
 ### configure local service
 * edit /opt/gpstracker/www/gps/RemoteConfig.php
 ### testing
-* ./scripts/gpx-upload.php
+* ~/scripts/gpx-upload.php
 ### configure cron
 * copy line #2 to crontab
 ## email support (current gpx track)
@@ -75,7 +70,7 @@ See INSTALL.md
 * [recipient].cer (by now only one is supported; if present, than the recipient is extract from this file)
 * signer.pem and signer_key.pem (with -nodes!)
 ### testing
-* ./scripts/email.sh [your e-mail addresse]
+* ~/scripts/email.sh [your e-mail addresse]
 ## upgrade source
 * download tar ball
 * extract changed files

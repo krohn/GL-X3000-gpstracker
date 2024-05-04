@@ -36,5 +36,3 @@ $localStreamContext=stream_context_create($localStreamContextOptions);
 $localURL=sprintf('http%s://%s', (isset($localStreamContextOptions['ssl']) ? 's' : ''), $localURL);
 
 unset($localStreamContextOptions);
-
-?>

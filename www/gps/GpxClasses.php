@@ -308,5 +308,3 @@ function formatDate($time) {
 function convDate($dateStr) {
 	return formatDate(strtotime($dateStr));
 }
-
-?>
