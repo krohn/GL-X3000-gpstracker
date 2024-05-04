@@ -35,9 +35,7 @@ chgCmd=/bin/chgrp
 logCmd=/usr/bin/logger
 gpsdCmd=/usr/sbin/gpsd
 gpxCmd=/usr/bin/gpxlogger
-#gpxOpts='-d -i 60 -m 20 -r'
-gpxOpts='-d -i 60 -r'
-
+gpxOpts='-d -i 60 -m 20 -r'
 
 writeLog() {
 	$logCmd -t $scriptName "$1"
